@@ -1,22 +1,2 @@
 <h1>Edititing</h1>
-
-<% if @article.errors.any? %>
-  <% @article.errors.full_messages.each do |message| %>
-    <ul>
-      <li> <%= message %> </li>
-    </ul>
-  <% end %>
-<% end %>
-
-
-<p>
-<%= form_for @article do |f| %>
-<%= f.label :title %><br>
-<%= f.text_field :title %><br><br>
-<%= f.label :description %><br>
-<%= f.text_area :description %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
-<% end %>
+<%= render 'form' %>
