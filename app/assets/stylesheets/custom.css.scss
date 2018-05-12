@@ -1,2 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.navbar-brand{
+  float: left;
+  font-size: 2em;
+}
+.navbar-brand:hover{
+  color: inherit;
+  text-decoration: none;
+}
+.center{
+  text-align: center;
+}
