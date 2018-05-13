@@ -1,0 +1,26 @@
+<h1> <%= @user.username.capitalize %> </h1>
+
+<% @user.articles.each do |article| %>
+
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+    <div class="well well-lg">
+      <div class="article-title">
+        <%= link_to article.title, article_path(article) %>
+      </div>
+      <div class="article-body">
+        <%= truncate(article.description, length: 100) %>
+      </div>
+      <div>
+        <p style="float: right">
+          Created at : <%= time_ago_in_words(article.created_at) %>
+        </p>
+      </div><br>
+      <div class="article-actions">
+        <%= link_to 'Edit', edit_article_path(article), class: "btn btn-primary"%>
+        <%= link_to 'Delete this article', article_path(article), method: :delete, class: "btn btn-danger"%>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
