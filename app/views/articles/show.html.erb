@@ -4,9 +4,25 @@
     <strong>Description: </strong>
   </h4>
   <hr>
-  <p>
+  <p class = "well">
     <%= @article.description %>
   </p>
+  <div>
+    <p style="float: left">
+      Created by :
+      <%=
+        if @article.user
+          @article.user.username
+        else
+          'Unknown'
+        end
+      %>
+      <br>
+    </p>
+    <p style="float: right">
+      Created at : <%= time_ago_in_words(@article.created_at) %>
+    </p>
+  </div><br>
   <div class="article-actions">
     <%= link_to 'Back to articles', articles_path, class: "btn btn-primary"%>
     <%= link_to 'Edit this article', edit_article_path(@article), class: "btn btn-success"%>
