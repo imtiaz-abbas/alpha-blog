@@ -4,11 +4,7 @@
   <div class="row" align = "center">
     <div class="well center" style = "width : 50%">
       <div class="img-circle" style = "float:left, height:120;">
-        <%=
-          if user.email
-            gravatar_for user, size: 120
-          end
-        %>
+        <%= link_to (gravatar_for user) , user_path(user)%>
       </div>
       <span><%=link_to user.username, user_path(user) %></span><br>
       <span><%= user.email %></span>
