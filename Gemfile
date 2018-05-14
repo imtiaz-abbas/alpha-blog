@@ -9,7 +9,8 @@ gem 'rails', '~> 5.2.0'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-
+gem 'will_paginate', '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-ui-sass-rails', '~> 4.0', '>= 4.0.3.0'

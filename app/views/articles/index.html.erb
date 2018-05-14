@@ -1,5 +1,8 @@
 <h1>All Articles</h1>
 <%= link_to 'Add a new article' , new_article_path%>
+<div align = "center">
+  <%= will_paginate %>
+</div>
 </br></br>
   <% @articles.each do |article| %>
 
@@ -36,3 +39,6 @@
     </div>
   </div>
   <% end %>
+<div align="center">
+  <%= will_paginate %>
+</div>
