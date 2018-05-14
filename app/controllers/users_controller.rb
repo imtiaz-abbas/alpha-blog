@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :get_user, only: [:show, :update, :edit]
+  before_action :same_user , only: [:edit, :destroy, :update]
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
   end
@@ -6,14 +8,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
   def show
-    @user = User.find(params[:id])
     @user_articles = @user.articles.paginate(page: params[:page], per_page: 5)
   end
   def edit
-      @user = User.find(params[:id])
   end
   def update
-    @user = User.find(params[:id])
     if @user.update user_params
       flash[:success] = "sucessfully updated."
       redirect_to articles_path
@@ -25,12 +24,25 @@ class UsersController < ApplicationController
     # debugger
     @user = User.new(user_params)
     if @user.save
-      flash['success'] = 'welcome to alpha blog'
+      flash[:success] = 'welcome to alpha blog'
       redirect_to articles_path
     else
       render 'new'
     end
   end
+  def get_user
+      @user = User.find(params[:id])
+  end
+  def same_user
+    if !logged_in?
+      flash[:danger] = "You must be logged in to perform this action"
+      redirect_to login_path
+    elsif current_user != @user
+      flash[:danger] = "You can edit only your account details"
+      redirect_to login_path
+    end
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :email, :password)

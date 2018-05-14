@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :same_user, except: [:index, :show]
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
   end
@@ -35,7 +36,15 @@ class ArticlesController < ApplicationController
 
   def show
   end
-
+  def same_user
+    if !logged_in?
+      flash[:danger] = "You must be logged in to perform edit actions"
+      redirect_to login_path
+    elsif current_user != @article.user
+      flash[:danger] = "you can edit only your articles"
+      redirect_to user_path(current_user)
+    end
+  end
   private
   def article_params
     params.require(:article).permit(:title, :description)
