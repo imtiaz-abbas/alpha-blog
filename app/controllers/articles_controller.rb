@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
     @articles = Article.paginate(page: params[:page], per_page: 5)
   end
   def new
+    if !logged_in?
+      flash[:danger] = "You must login to post an article"
+      redirect_to login_path
+    end
     @article = Article.new
   end
   def edit
