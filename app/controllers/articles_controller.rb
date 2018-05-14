@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
     if !logged_in?
       flash[:danger] = "You must be logged in to perform edit actions"
       redirect_to login_path
-    elsif current_user != @article.user
+    elsif (current_user != @article.user  && !current_user.admin?)
       flash[:danger] = "you can edit only your articles"
       redirect_to user_path(current_user)
     end

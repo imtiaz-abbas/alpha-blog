@@ -3,9 +3,6 @@ class UsersController < ApplicationController
   before_action :same_user , only: [:edit, :destroy, :update]
   def destroy
     session[:user_id] = nil
-    @user.articles.each do |article|
-      article.destroy
-    end
     User.destroy(@user.id)
 
     redirect_to signup_path
@@ -47,8 +44,8 @@ class UsersController < ApplicationController
     if !logged_in?
       flash[:danger] = "You must be logged in to perform this action"
       redirect_to login_path
-    elsif current_user != @user
-      flash[:danger] = "You can edit only your account details"
+    elsif (current_user != @user)
+      flash[:danger] = "You don't have permissions to perform this action"
       redirect_to login_path
     end
   end
