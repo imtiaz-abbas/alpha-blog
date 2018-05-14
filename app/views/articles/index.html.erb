@@ -31,10 +31,12 @@
             Created at : <%= time_ago_in_words(article.created_at) %>
           </p>
         </div><br>
+        <% if current_user == article.user %>
         <div class="article-actions">
           <%= link_to 'Edit', edit_article_path(article), class: "btn btn-primary"%>
           <%= link_to 'Delete this article', article_path(article), method: :delete, class: "btn btn-danger"%>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
