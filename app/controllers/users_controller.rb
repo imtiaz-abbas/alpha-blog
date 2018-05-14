@@ -2,10 +2,12 @@ class UsersController < ApplicationController
   before_action :get_user, only: [:show, :update, :edit, :destroy]
   before_action :same_user , only: [:edit, :destroy, :update]
   def destroy
-    session[:user_id] = nil
     User.destroy(@user.id)
-
-    redirect_to signup_path
+    if !current_user.admin?
+      session[:user_id] = nil
+      redirect_to login_path
+    end
+    redirect_to users_path
   end
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
@@ -44,9 +46,9 @@ class UsersController < ApplicationController
     if !logged_in?
       flash[:danger] = "You must be logged in to perform this action"
       redirect_to login_path
-    elsif (current_user != @user)
+    elsif (current_user != @user && !current_user.admin?)
       flash[:danger] = "You don't have permissions to perform this action"
-      redirect_to login_path
+      redirect_to articles_path
     end
   end
 

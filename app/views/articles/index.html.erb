@@ -1,5 +1,7 @@
-<h1>All Articles</h1>
-<%= link_to 'Add a new article' , new_article_path%>
+<div class="center">
+  <h1>All Articles</h1>
+</div>
+<%= link_to 'Add a new article' , new_article_path, class: "btn-primary btn"%>
 <div align = "center">
   <%= will_paginate %>
 </div>
@@ -38,7 +40,7 @@
           <%= link_to 'Edit', edit_article_path(article), class: "btn btn-primary"%>
           <%= link_to 'Delete this article', article_path(article), method: :delete, class: "btn btn-danger"%>
         </div>
-        <% elsif current_user.admin? %>
+        <% elsif logged_in? && current_user.admin? %>
         <div class="article-actions">
           <!-- <%= link_to 'Edit', edit_article_path(article), class: "btn btn-primary"%> -->
           <%= link_to 'Delete this article', article_path(article), method: :delete, class: "btn btn-danger"%>
