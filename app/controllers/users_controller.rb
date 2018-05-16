@@ -3,10 +3,7 @@ class UsersController < ApplicationController
   before_action :same_user , only: [:edit, :destroy, :update]
   def destroy
     User.destroy(@user.id)
-    if !current_user.admin?
-      session[:user_id] = nil
-      redirect_to login_path
-    end
+    session[:user_id] = nil
     redirect_to users_path
   end
   def index

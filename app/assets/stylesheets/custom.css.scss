@@ -1,10 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 .edit-btn {
   padding: 2px;
 }
 .row {
   width: 99%;
+  margin: 0px;
+  border: 0px;
+  padding: 10px;
 }
 body {
   width: 100%;
@@ -74,7 +78,10 @@ footer ul li{
 }
 footer{
   margin-top: 45px;
+  width: 100%;
   padding-top: 10px;
+  bottom: 0;
+  position:static;
   border-top: 1px solid black;
   color: #777;
 }
