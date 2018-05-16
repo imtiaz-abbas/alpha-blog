@@ -1,5 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+.edit-btn {
+  padding: 2px;
+}
+.row {
+  width: 99%;
+}
+body {
+  width: 100%;
+}
+.main-container {
+  width: 99%;
+}
 .article-user-img {
   float: left;
   margin: 10px;
