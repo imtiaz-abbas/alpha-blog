@@ -23,6 +23,9 @@
       Created at : <%= time_ago_in_words(@article.created_at) %>
     </p>
   </div><br>
+  <% if @article.categories.any? %>
+  <p>Categories: <%= render @article.categories %></p>
+  <% end %>
   <div class="article-actions">
     <%= link_to 'Back to articles', articles_path, class: "btn btn-primary"%>
     <% if current_user == @article.user%>
